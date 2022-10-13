@@ -1,18 +1,50 @@
-<div class="auth-title"><h1>Sign in</h1></div>
+<div class="auth-title">
+  <h1>{{ formFor }}</h1>
+</div>
 <div class="auth-inputs">
   <form>
+    <div class="signUp-inputs">
+      <mat-form-field *ngIf="formFor === 'Sign Up'" class="signUp-input">
+        <input
+          autocomplete="off"
+          matInput
+          type="text"
+          placeholder="full name"
+        />
+      </mat-form-field>
+      <mat-form-field *ngIf="formFor === 'Sign Up'" class="signUp-input">
+        <input
+          autocomplete="off"
+          matInput
+          type="text"
+          placeholder="display name"
+        />
+      </mat-form-field>
+    </div>
     <mat-form-field class="form-input">
       <input autocomplete="off" matInput type="text" placeholder="Email" />
     </mat-form-field>
     <mat-form-field class="form-input">
       <input autocomplete="off" matInput type="text" placeholder="Password" />
     </mat-form-field>
+    <mat-form-field *ngIf="formFor === 'Sign Up'" class="form-input">
+      <input
+        autocomplete="off"
+        matInput
+        type="text"
+        placeholder="Password Repeat"
+      />
+    </mat-form-field>
     <div class="form-submit">
-      <button color="primary" mat-raised-button>Sign in</button>
+      <button color="primary" mat-raised-button>
+        {{ labels[formFor].btnText }}
+      </button>
       <div class="form-redirect-link">
         <span
-          >Haven't account?
-          <a class="redirect-link-text" href="">Sign Up</a>
+          >{{ labels[formFor].redirectText }}
+          <a class="redirect-link-text" href="">
+            {{ labels[formFor].redirectBtnText }}</a
+          >
         </span>
       </div>
     </div>

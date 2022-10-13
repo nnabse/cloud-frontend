@@ -11,6 +11,13 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  .signUp-inputs {
+    .signUp-input {
+      //margin-right: 15px;
+      //width: 30%;
+    }
+  }
+
   .form-input {
     max-width: 60%;
     width: 60%;
