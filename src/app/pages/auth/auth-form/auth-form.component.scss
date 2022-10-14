@@ -1,0 +1,34 @@
+@import "variables";
+
+.auth-title {
+  margin-top: 10%;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.auth-inputs form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  .form-input {
+    max-width: 60%;
+    width: 60%;
+    margin-bottom: 20px;
+  }
+  .form-submit {
+    width: 60%;
+    display: flex;
+    button {
+      width: 120px;
+    }
+    .form-redirect-link {
+      display: flex;
+      align-items: center;
+      padding-left: 15px;
+      .redirect-link-text {
+        color: $main-link-color;
+      }
+    }
+  }
+}
