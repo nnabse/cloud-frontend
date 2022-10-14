@@ -2,10 +2,10 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-auth-form',
-  templateUrl: './auth-form.component.html',
-  styleUrls: ['./auth-form.component.scss'],
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.scss'],
 })
-export class AuthFormComponent {
+export class FormComponent {
   @Input() formFor: 'Sign In' | 'Sign Up' = 'Sign In';
 
   labels = {

@@ -7,11 +7,11 @@ import { AppComponent } from './app.component';
 
 import { MaterialModule } from './material/material.module';
 
-import { AuthFormComponent } from '@pages/auth/auth-form/auth-form.component';
-import { AuthComponent } from '@pages/auth/auth/auth.component';
+import { FormComponent } from '@pages/auth/form/form.component';
+import { AuthComponent } from '@pages/auth/auth.component';
 
 @NgModule({
-  declarations: [AppComponent, AuthFormComponent, AuthComponent],
+  declarations: [AppComponent, FormComponent, AuthComponent],
   imports: [BrowserModule, BrowserAnimationsModule, MaterialModule],
   providers: [],
   bootstrap: [AppComponent],
