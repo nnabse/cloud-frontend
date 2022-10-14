@@ -2,48 +2,52 @@
   <span>{{ formFor }}</span>
 </div>
 <div class="auth-form">
-  <form>
+  <form [formGroup]="authForm">
     <div class="sign-up-inputs">
       <input
-        *ngIf="formFor === 'Sign Up'"
+        formControlName="fullName"
+        *ngIf="formFor === SIGN_UP_PAGE_NAME"
         class="sign-up-input"
         autocomplete="off"
         type="text"
-        placeholder="Full name"
+        placeholder="full name*"
       />
       <input
-        *ngIf="formFor === 'Sign Up'"
+        formControlName="displayName"
+        *ngIf="formFor === SIGN_UP_PAGE_NAME"
         class="sign-up-input"
         autocomplete="off"
         type="text"
-        placeholder="Display name"
+        placeholder="display name"
       />
     </div>
     <input
+      formControlName="email"
       class="form-input"
       autocomplete="off"
       type="text"
-      placeholder="Email"
+      placeholder="email*"
     />
     <input
+      formControlName="password"
       class="form-input"
       autocomplete="off"
       type="password"
-      placeholder="Password"
+      placeholder="password*"
     />
     <input
-      *ngIf="formFor === 'Sign Up'"
+      formControlName="passwordRepeat"
+      *ngIf="formFor === SIGN_UP_PAGE_NAME"
       class="form-input"
       autocomplete="off"
       type="password"
-      placeholder="Password Repeat"
+      placeholder="repeat password*"
     />
-    <div *ngIf="formFor === 'Sign Up'" class="avatar-upload">
+    <div *ngIf="formFor === SIGN_UP_PAGE_NAME" class="avatar-upload">
       <div class="avatar-preview">
-        <img />
       </div>
       <div class="avatar-upload-button">
-        <button>Upload avatar</button>
+        <button>upload avatar</button>
         <div class="avatar-upload-requirements">
           <div class="upload-requirements-text">
             Supported formats .jpg, .jpeg, .gif, .png
@@ -53,11 +57,11 @@
       </div>
     </div>
     <div class="form-submit">
-      <button>{{ labels[formFor].btnText }}</button>
+      <button [disabled]="authForm.invalid">{{ labels[formFor].btnText }}</button>
       <div class="form-redirect-link">
         <span>
           {{ labels[formFor].redirectText }}
-          <a class="redirect-link-text">
+          <a class="redirect-link-text" [routerLink]="labels[formFor].redirectLink">
             {{ labels[formFor].redirectBtnText }}
           </a>
         </span>
