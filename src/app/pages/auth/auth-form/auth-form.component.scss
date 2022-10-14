@@ -12,16 +12,18 @@
   align-items: center;
   flex-direction: column;
   .signUp-inputs {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
     .signUp-input {
-      //margin-right: 15px;
-      //width: 30%;
+      width: 45%;
     }
   }
 
   .form-input {
     max-width: 60%;
     width: 60%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   .form-submit {
     width: 60%;
