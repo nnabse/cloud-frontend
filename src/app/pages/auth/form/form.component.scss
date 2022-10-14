@@ -1,66 +1,144 @@
 @import "variables";
 
 .auth-title {
-  margin-top: 10%;
-  margin-bottom: 10px;
   display: flex;
   justify-content: center;
+
+  font-size: 2rem;
+  font-weight: lighter;
+
+  margin-top: 5%;
 }
 
 .auth-form form {
   display: flex;
   align-items: center;
   flex-direction: column;
+
   .sign-up-inputs {
-    width: 80%;
     display: flex;
+    max-width: 61%;
+    width: 100%;
+
     justify-content: space-between;
+
     .sign-up-input {
       width: 45%;
+      height: 40px;
+
+      font-family: $main-font;
+
+      margin-top: 25px;
+    }
+
+    .sign-up-input:hover {
+      box-shadow: 0 0 20px $pink-color;
     }
   }
 
   .form-input {
-    max-width: 80%;
     width: 100%;
-    margin-bottom: 10px;
+    max-width: 60%;
+    height: 40px;
+
+    font-family: $main-font;
+
+    margin-top: 25px;
   }
+
+  .form-input:hover {
+    box-shadow: 0 0 20px $pink-color;
+  }
+
   .avatar-upload {
-    width: 80%;
-    margin-bottom: 10px;
     display: flex;
+    width: 60%;
+
+    margin-top: 20px;
+
     .avatar-preview {
       padding-right: 10px;
+
       img {
         width: 100px;
         height: 100px;
+
+        background-color: $pink-color;
+
         border-radius: 50%;
       }
+
+      img:hover {
+        box-shadow: 0 0 10px $pink-color-dark;
+      }
     }
+
     .avatar-upload-button {
-      height: 50%;
       width: 100%;
+      height: 50%;
+
       button {
         width: 100%;
+        height: 35px;
+
+        background-color: $pink-color;
+
+        border: none;
+
+        font-family: $main-font;
       }
+
+      button:hover {
+        background-color: $pink-color-darken;
+        border: 1px solid black;
+      }
+
       .avatar-upload-requirements {
         width: 100%;
+
+        font-family: $main-font;
+        font-size: 0.8rem;
+
         padding-top: 10px;
       }
     }
   }
   .form-submit {
-    width: 80%;
     display: flex;
+    width: 60%;
+
+    margin-top: 20px;
+
     button {
-      width: 120px;
+      width: 40%;
+      height: 35px;
+
+      font-family: $main-font;
+
+      background-color: $pink-color;
+      border: none;
     }
+
+    button:hover {
+      background-color: $pink-color-darken;
+      border: 1px solid black;
+    }
+
     .form-redirect-link {
       display: flex;
       align-items: center;
+
+      font-family: $main-font;
+      font-size: 0.8rem;
+
       padding-left: 15px;
+
       .redirect-link-text {
-        color: $main-link-color;
+        color: $pink-color-dark;
+      }
+
+      .redirect-link-text:hover {
+        text-shadow: 0 0 1px $pink-color-darken;
       }
     }
   }
