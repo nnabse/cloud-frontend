@@ -1,7 +1,6 @@
-export interface User {
+export interface SignUpForm {
   fullName: string;
   displayName?: string;
   email: string;
   password: string;
-  passwordRepeat: string;
 }

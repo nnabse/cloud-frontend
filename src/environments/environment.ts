@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  DB_LINK: 'http://192.168.88.55:8080/api',
 };
 
 /*

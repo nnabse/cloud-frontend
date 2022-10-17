@@ -4,10 +4,10 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { DB_LINK } from '@constants/db-link.constants';
+import { environment } from '@environments/environment';
 import { SIGN_UP_REQUEST_LINK } from '@constants/db-requests.constants';
 
-import { User } from '@interfaces/user.interface';
+import { SignUpForm } from '@interfaces/signUpForm.interface';
 import { Auth } from '@interfaces/auth.interface';
 
 @Injectable({
@@ -16,7 +16,10 @@ import { Auth } from '@interfaces/auth.interface';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  public signUp(body: User): Observable<Auth> {
-    return this.http.post<Auth>(`${DB_LINK}${SIGN_UP_REQUEST_LINK}`, body);
+  public signUp(body: SignUpForm): Observable<Auth> {
+    return this.http.post<Auth>(
+      `${environment.DB_LINK}${SIGN_UP_REQUEST_LINK}`,
+      body
+    );
   }
 }
