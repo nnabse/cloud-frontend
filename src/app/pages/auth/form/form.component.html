@@ -1,0 +1,70 @@
+<div class="auth-title">
+  <span>{{ formFor }}</span>
+</div>
+<div class="auth-form">
+  <form [formGroup]="authForm">
+    <div class="sign-up-inputs">
+      <input
+        formControlName="fullName"
+        *ngIf="formFor === SIGN_UP_PAGE_NAME"
+        class="sign-up-input"
+        autocomplete="off"
+        type="text"
+        placeholder="full name*"
+      />
+      <input
+        formControlName="displayName"
+        *ngIf="formFor === SIGN_UP_PAGE_NAME"
+        class="sign-up-input"
+        autocomplete="off"
+        type="text"
+        placeholder="display name"
+      />
+    </div>
+    <input
+      formControlName="email"
+      class="form-input"
+      autocomplete="off"
+      type="text"
+      placeholder="email*"
+    />
+    <input
+      formControlName="password"
+      class="form-input"
+      autocomplete="off"
+      type="password"
+      placeholder="password*"
+    />
+    <input
+      formControlName="passwordRepeat"
+      *ngIf="formFor === SIGN_UP_PAGE_NAME"
+      class="form-input"
+      autocomplete="off"
+      type="password"
+      placeholder="repeat password*"
+    />
+    <div *ngIf="formFor === SIGN_UP_PAGE_NAME" class="avatar-upload">
+      <div class="avatar-preview"></div>
+      <div class="avatar-upload-button">
+        <button>upload avatar</button>
+        <div class="avatar-upload-requirements">
+          <div class="upload-requirements-text">
+            Supported formats .jpg, .jpeg, .gif, .png
+          </div>
+          <div class="upload-requirements-text">Max image size - 700kB</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-submit">
+      <button [disabled]="authForm.invalid">{{ labels[formFor].btnText }}</button>
+      <div class="form-redirect-link">
+        <span>
+          {{ labels[formFor].redirectText }}
+          <a class="redirect-link-text" [routerLink]="labels[formFor].redirectLink">
+            {{ labels[formFor].redirectBtnText }}
+          </a>
+        </span>
+      </div>
+    </div>
+  </form>
+</div>
