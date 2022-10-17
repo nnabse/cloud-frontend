@@ -56,11 +56,16 @@
       </div>
     </div>
     <div class="form-submit">
-      <button [disabled]="authForm.invalid">{{ labels[formFor].btnText }}</button>
+      <button [disabled]="authForm.invalid" (click)="submitButtonFunction()">
+        {{ labels[formFor].btnText }}
+      </button>
       <div class="form-redirect-link">
         <span>
           {{ labels[formFor].redirectText }}
-          <a class="redirect-link-text" [routerLink]="labels[formFor].redirectLink">
+          <a
+            class="redirect-link-text"
+            [routerLink]="labels[formFor].redirectLink"
+          >
             {{ labels[formFor].redirectBtnText }}
           </a>
         </span>

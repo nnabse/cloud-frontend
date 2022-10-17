@@ -1,7 +1,10 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { PageNames } from '@enums/auth.enums';
+
+import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-auth-form',
@@ -10,6 +13,19 @@ import { PageNames } from '@enums/auth.enums';
 })
 export class FormComponent implements OnChanges {
   @Input() formFor: PageNames = PageNames.SIGN_IN;
+
+  constructor(private authService: AuthService) {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    for (let changeName in changes) {
+      const changedProperty = changes[changeName];
+      this.formFor = changedProperty.currentValue;
+      if (this.formFor === PageNames.SIGN_IN) {
+        this.authForm.removeControl('passwordRepeat');
+        this.authForm.removeControl('fullName');
+      }
+    }
+  }
 
   public SIGN_UP_PAGE_NAME = 'Sign up';
 
@@ -46,14 +62,16 @@ export class FormComponent implements OnChanges {
     },
   };
 
-  ngOnChanges(changes: SimpleChanges) {
-    for (let changeName in changes) {
-      const changedProperty = changes[changeName];
-      this.formFor = changedProperty.currentValue;
-      if (this.formFor === PageNames.SIGN_IN) {
-        this.authForm.removeControl('passwordRepeat');
-        this.authForm.removeControl('fullName');
-      }
+  public clearPasswordFields(): void {
+    this.authForm.get('password')?.setValue('');
+    this.authForm.get('passwordRepeat')?.setValue('');
+  }
+
+  public submitButtonFunction(): void {
+    if (this.formFor === PageNames.SIGN_UP) {
+      this.authService.signUp(this.authForm.value);
+      this.clearPasswordFields();
+      return;
     }
   }
 }
