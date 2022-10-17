@@ -6,7 +6,7 @@
     <div class="sign-up-inputs">
       <input
         formControlName="fullName"
-        *ngIf="formFor === SIGN_UP_PAGE_NAME"
+        *ngIf="formFor === signUpPageName"
         class="sign-up-input"
         autocomplete="off"
         type="text"
@@ -14,7 +14,7 @@
       />
       <input
         formControlName="displayName"
-        *ngIf="formFor === SIGN_UP_PAGE_NAME"
+        *ngIf="formFor === signUpPageName"
         class="sign-up-input"
         autocomplete="off"
         type="text"
@@ -37,13 +37,13 @@
     />
     <input
       formControlName="passwordRepeat"
-      *ngIf="formFor === SIGN_UP_PAGE_NAME"
+      *ngIf="formFor === signUpPageName"
       class="form-input"
       autocomplete="off"
       type="password"
       placeholder="repeat password*"
     />
-    <div *ngIf="formFor === SIGN_UP_PAGE_NAME" class="avatar-upload">
+    <div *ngIf="formFor === signUpPageName" class="avatar-upload">
       <div class="avatar-preview"></div>
       <div class="avatar-upload-button">
         <button>upload avatar</button>
@@ -56,11 +56,16 @@
       </div>
     </div>
     <div class="form-submit">
-      <button [disabled]="authForm.invalid">{{ labels[formFor].btnText }}</button>
+      <button [disabled]="authForm.invalid" (click)="submitButton()">
+        {{ labels[formFor].btnText }}
+      </button>
       <div class="form-redirect-link">
         <span>
           {{ labels[formFor].redirectText }}
-          <a class="redirect-link-text" [routerLink]="labels[formFor].redirectLink">
+          <a
+            class="redirect-link-text"
+            [routerLink]="labels[formFor].redirectLink"
+          >
             {{ labels[formFor].redirectBtnText }}
           </a>
         </span>

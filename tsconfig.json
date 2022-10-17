@@ -4,9 +4,13 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
+      "@environments/*": ["src/environments/*"],
       "@pages/*": ["src/app/pages/*"],
       "@enums/*": ["src/app/enums/*"],
-      "@material/*": ["src/app/material/*"]
+      "@constants/*": ["src/app/constants/*"],
+      "@interfaces/*": ["src/app/interfaces/*"],
+      "@material/*": ["src/app/material/*"],
+      "@services/*": ["src/app/services/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
