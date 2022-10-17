@@ -63,18 +63,21 @@
     margin-top: 20px;
 
     .avatar-preview {
-      padding-right: 10px;
-
       width: 130px;
       height: 100px;
 
       background-color: $pink-color-light;
 
       border-radius: 50%;
+
+      transition: 0.5s;
+
+      padding-right: 10px;
     }
 
     .avatar-preview:hover {
-      box-shadow: 0 0 10px $pink-color-dark;
+      box-shadow: 0 0 5px $pink-color-dark;
+      transition: 0.5s;
     }
 
     .avatar-upload-button {
