@@ -30,6 +30,11 @@
     .sign-up-input:hover {
       box-shadow: 0 0 20px $pink-color-lighter;
     }
+
+    .sign-up-input::placeholder {
+      padding-left: 10px;
+      color: #000;
+    }
   }
 
   .form-input {
@@ -40,6 +45,11 @@
     font-family: $main-font;
 
     margin-top: 20px;
+  }
+
+  .form-input::placeholder {
+    padding-left: 10px;
+    color: #000;
   }
 
   .form-input:hover {

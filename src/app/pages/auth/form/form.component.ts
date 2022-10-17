@@ -27,7 +27,7 @@ export class FormComponent implements OnChanges {
   public authForm: FormGroup = new FormGroup({
     fullName: new FormControl('', [Validators.required]),
     displayName: new FormControl('', [Validators.minLength(5)]),
-    email: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(8),
