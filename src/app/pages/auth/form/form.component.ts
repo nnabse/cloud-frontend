@@ -13,17 +13,6 @@ export class FormComponent implements OnChanges {
 
   public SIGN_UP_PAGE_NAME = 'Sign up';
 
-  ngOnChanges(changes: SimpleChanges) {
-    for (let changeName in changes) {
-      const changedProperty = changes[changeName];
-      this.formFor = changedProperty.currentValue;
-      if (this.formFor === PageNames.SIGN_IN) {
-        this.authForm.removeControl('passwordRepeat');
-        this.authForm.removeControl('fullName');
-      }
-    }
-  }
-
   public authForm: FormGroup = new FormGroup({
     fullName: new FormControl('', [Validators.required]),
     displayName: new FormControl('', [Validators.minLength(5)]),
@@ -42,7 +31,7 @@ export class FormComponent implements OnChanges {
     ]),
   });
 
-  labels = {
+  public labels = {
     'Sign in': {
       btnText: 'Sign in',
       redirectBtnText: 'Sign Up',
@@ -56,4 +45,15 @@ export class FormComponent implements OnChanges {
       redirectLink: '/signIn',
     },
   };
+
+  ngOnChanges(changes: SimpleChanges) {
+    for (let changeName in changes) {
+      const changedProperty = changes[changeName];
+      this.formFor = changedProperty.currentValue;
+      if (this.formFor === PageNames.SIGN_IN) {
+        this.authForm.removeControl('passwordRepeat');
+        this.authForm.removeControl('fullName');
+      }
+    }
+  }
 }
