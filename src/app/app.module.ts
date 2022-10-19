@@ -15,9 +15,18 @@ import { MaterialModule } from '@material/material.module';
 
 import { FormComponent } from '@pages/auth/form/form.component';
 import { AuthComponent } from '@pages/auth/auth.component';
+import { DashboardComponent } from '@pages/dashboard/dashboard.component';
+
+import { SidebarComponent } from '@components/sidebar/sidebar.component';
 
 @NgModule({
-  declarations: [AppComponent, FormComponent, AuthComponent],
+  declarations: [
+    AppComponent,
+    FormComponent,
+    AuthComponent,
+    SidebarComponent,
+    DashboardComponent,
+  ],
   imports: [
     AppRoutingModule,
     BrowserModule,

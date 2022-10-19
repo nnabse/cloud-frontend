@@ -37,4 +37,12 @@ export class AuthService {
       { withCredentials: true }
     );
   }
+
+  public signOut(): Observable<Auth> {
+    return this.http.post<Auth>(
+      `${environment.DB_LINK}${SIGN_OUT_REQUEST_LINK}`,
+      {},
+      { withCredentials: true }
+    );
+  }
 }
