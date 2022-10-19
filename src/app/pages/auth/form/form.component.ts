@@ -1,10 +1,9 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { PageNames } from '@enums/auth.enums';
 import { AuthForm } from '@enums/authForm.enums';
-
 import { SIGN_UP_PAGE_NAME } from '@constants/auth-pageNames.constants';
 
 import { AuthService } from '@services/auth.service';
@@ -17,7 +16,7 @@ import { AuthService } from '@services/auth.service';
 export class FormComponent implements OnChanges {
   @Input() formFor: PageNames = PageNames.SIGN_IN;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnChanges(changes: SimpleChanges) {
     for (let changeName in changes) {
@@ -73,9 +72,16 @@ export class FormComponent implements OnChanges {
   public submitButton(): void {
     if (this.formFor === PageNames.SIGN_UP) {
       const { fullName, displayName, email, password } = this.authForm.value;
-      this.authService.signUp({ fullName, displayName, email, password });
+      this.authService
+        .signUp({ fullName, displayName, email, password })
+        .subscribe();
       this.clearPasswordFields();
       return;
     }
+    const { email, password } = this.authForm.value;
+    this.authService
+      .signIn({ email, password })
+      .subscribe(() => this.router.navigate(['/dashboard']));
+    this.clearPasswordFields();
   }
 }
