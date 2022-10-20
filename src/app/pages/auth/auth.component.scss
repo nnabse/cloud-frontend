@@ -4,19 +4,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   .form {
     display: flex;
     justify-content: center;
     align-items: center;
-
     padding: 0 30px 30px 30px;
-
     max-width: 25%;
     max-height: 55%;
     width: 100%;
     min-height: 35%;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 30px -30px #C4C4C4;
+    box-shadow: 30px -30px #c4c4c4;
   }
 }

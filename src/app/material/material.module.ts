@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-const MaterialModules = [MatInputModule, MatFormFieldModule, MatButtonModule];
+const MaterialModules = [MatSnackBarModule];
 
 @NgModule({
   imports: [MaterialModules],

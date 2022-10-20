@@ -1,0 +1,56 @@
+@import "variables";
+
+.sidebar {
+  height: 100%;
+  width: 20%;
+  color: #fff;
+  position: fixed;
+
+  &-content {
+    height: 100%;
+    .back-button {
+      display: flex;
+      max-width: 200px;
+      max-height: 50px;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      padding: 8px 0 30px 30px;
+      color: $pink-color;
+      font-size: 1.5rem;
+      font-family: $main-font;
+      font-weight: bold;
+
+      img {
+        width: 18px;
+        height: 18px;
+        padding-right: 5px;
+      }
+    }
+
+    .redirect-links {
+      padding-left: 30px;
+      position: fixed;
+      .redirect-link {
+        font-size: 1.5rem;
+        font-weight: lighter;
+        padding-bottom: 15px;
+      }
+    }
+
+    .sign-out-btn {
+      span {
+        display: flex;
+      }
+
+      bottom: 0;
+      padding: 0 0 60px 60px;
+      position: absolute;
+
+      h2 {
+        padding-left: 10px;
+        font-weight: lighter;
+      }
+    }
+  }
+}

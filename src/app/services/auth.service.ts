@@ -5,9 +5,10 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from '@environments/environment';
-import { SIGN_UP_REQUEST_LINK } from '@constants/db-requests.constants';
+import { RequestLink } from '@enums/requestLink.enums';
 
 import { SignUpForm } from '@interfaces/signUpForm.interface';
+import { SignInForm } from '@interfaces/signInForm.interface';
 import { Auth } from '@interfaces/auth.interface';
 
 @Injectable({
@@ -18,8 +19,25 @@ export class AuthService {
 
   public signUp(body: SignUpForm): Observable<Auth> {
     return this.http.post<Auth>(
-      `${environment.DB_LINK}${SIGN_UP_REQUEST_LINK}`,
-      body
+      `${environment.DB_LINK}${RequestLink.SIGN_UP}`,
+      body,
+      { withCredentials: true }
+    );
+  }
+
+  public signIn(body: SignInForm): Observable<Auth> {
+    return this.http.post<Auth>(
+      `${environment.DB_LINK}${RequestLink.SIGN_IN}`,
+      body,
+      { withCredentials: true }
+    );
+  }
+
+  public signOut(): Observable<Auth> {
+    return this.http.post<Auth>(
+      `${environment.DB_LINK}${RequestLink.SIGN_OUT}`,
+      {},
+      { withCredentials: true }
     );
   }
 }

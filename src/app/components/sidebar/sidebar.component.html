@@ -1,0 +1,24 @@
+<div class="sidebar">
+  <div class="sidebar-content">
+    <div class="back-button">
+      <p *ngIf="isFolderOpened">
+        <img [src]="icons.arrowToLeft.link" [alt]="icons.arrowToLeft.description" />
+        Back
+      </p>
+    </div>
+    <div class="redirect-links">
+      <div class="redirect-link">
+        <li>Dashboard</li>
+      </div>
+      <div class="redirect-link">
+        <li>Account</li>
+      </div>
+    </div>
+    <div (click)="signOut()" class="sign-out-btn">
+      <span>
+        <img [src]="icons.signOut.link" [alt]="icons.signOut.description" />
+        <h2>Sign out</h2>
+      </span>
+    </div>
+  </div>
+</div>
