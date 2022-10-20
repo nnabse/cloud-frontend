@@ -18,6 +18,7 @@ import { AuthComponent } from '@pages/auth/auth.component';
 import { DashboardComponent } from '@pages/dashboard/dashboard.component';
 
 import { SidebarComponent } from '@components/sidebar/sidebar.component';
+import { AvatarUploadComponent } from '@components/avatar-upload/avatar-upload.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { SidebarComponent } from '@components/sidebar/sidebar.component';
     AuthComponent,
     SidebarComponent,
     DashboardComponent,
+    AvatarUploadComponent,
   ],
   imports: [
     AppRoutingModule,
