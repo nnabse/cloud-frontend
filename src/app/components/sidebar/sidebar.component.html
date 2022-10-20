@@ -2,7 +2,7 @@
   <div class="sidebar-content">
     <div class="back-button">
       <p *ngIf="isFolderOpened">
-        <img [src]="icons['arrowToLeft'].link" [alt]="icons['arrowToLeft'].description" />
+        <img [src]="icons.arrowToLeft.link" [alt]="icons.arrowToLeft.description" />
         Back
       </p>
     </div>
@@ -16,7 +16,7 @@
     </div>
     <div (click)="signOut()" class="sign-out-btn">
       <span>
-        <img [src]="icons['signOut'].link" [alt]="icons['signOut'].description" />
+        <img [src]="icons.signOut.link" [alt]="icons.signOut.description" />
         <h2>Sign out</h2>
       </span>
     </div>
