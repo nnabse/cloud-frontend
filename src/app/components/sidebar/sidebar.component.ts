@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@services/auth.service';
 
+import { IconsList } from '@constants/icons.constants';
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -9,11 +11,7 @@ import { AuthService } from '@services/auth.service';
 })
 export class SidebarComponent {
   public isFolderOpened = false;
-
-  public arrowToLeftIconLink = 'assets/icons/arrow-to-left.svg';
-  public arrowToLeftIconDescription = 'arrow to left icon';
-  public signOutIconLink = 'assets/icons/sign-out.svg';
-  public signOutIconDescription = 'sign out icon';
+  public icons = IconsList;
 
   constructor(private router: Router, private auth: AuthService) {}
 
