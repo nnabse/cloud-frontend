@@ -7,6 +7,9 @@ import { AuthForm } from '@enums/authForm.enums';
 import { SIGN_UP_PAGE_NAME } from '@constants/auth-pageNames.constants';
 
 import { AuthService } from '@services/auth.service';
+import { SnackbarService } from '@services/notifications/snackbar.service';
+
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-auth-form',
@@ -16,7 +19,11 @@ import { AuthService } from '@services/auth.service';
 export class FormComponent implements OnChanges {
   @Input() formFor: PageNames = PageNames.SIGN_IN;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private snackbar: SnackbarService
+  ) {}
 
   ngOnChanges(changes: SimpleChanges) {
     for (let changeName in changes) {
@@ -69,19 +76,20 @@ export class FormComponent implements OnChanges {
     this.authForm.get(AuthForm.PASSWORD_REPEAT)?.setValue('');
   }
 
-  public submitButton(): void {
+  public submit(): void {
     if (this.formFor === PageNames.SIGN_UP) {
       const { fullName, displayName, email, password } = this.authForm.value;
       this.authService
         .signUp({ fullName, displayName, email, password })
+        .pipe(catchError((err) => this.snackbar.openErrorSnackbar(err)))
         .subscribe();
-      this.clearPasswordFields();
-      return;
+    } else {
+      const { email, password } = this.authForm.value;
+      this.authService
+        .signIn({ email, password })
+        .pipe(catchError((err) => this.snackbar.openErrorSnackbar(err)))
+        .subscribe();
     }
-    const { email, password } = this.authForm.value;
-    this.authService
-      .signIn({ email, password })
-      .subscribe(() => this.router.navigate(['/dashboard']));
     this.clearPasswordFields();
   }
 }

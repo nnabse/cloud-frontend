@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+@import "variables.scss";
 
 html,
 body {
@@ -9,4 +9,9 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: black;
+}
+
+.error-snack {
+  background-color: $pink-color;
+  color: #000;
 }
