@@ -81,14 +81,16 @@ export class FormComponent implements OnChanges {
       const { fullName, displayName, email, password } = this.authForm.value;
       this.authService
         .signUp({ fullName, displayName, email, password })
-        .pipe(catchError((err) => this.snackbar.openErrorSnackbar(err)))
-        .subscribe();
+        .subscribe({
+          next: () => this.router.navigate(['/dashboard']),
+          error: (error) => this.snackbar.openErrorSnackbar(error),
+        });
     } else {
       const { email, password } = this.authForm.value;
-      this.authService
-        .signIn({ email, password })
-        .pipe(catchError((err) => this.snackbar.openErrorSnackbar(err)))
-        .subscribe();
+      this.authService.signIn({ email, password }).subscribe({
+        next: () => this.router.navigate(['/dashboard']),
+        error: (error) => this.snackbar.openErrorSnackbar(error),
+      });
     }
     this.clearPasswordFields();
   }
