@@ -15,6 +15,7 @@
     font-family: $main-font;
     margin-top: 20px;
     box-sizing: border-box;
+    padding-left: 15px;
   }
 
   .name-inputs {
@@ -30,12 +31,10 @@
     color: #000;
   }
 
-  .auth-input {
-    padding-left: 15px;
-  }
-
   .auth-input:hover {
     box-shadow: 0 0 20px $pink-color-lighter;
+    border: 1px solid black;
+    border-radius: 2.5px;
   }
 
   .form-submit {
