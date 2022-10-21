@@ -6,4 +6,11 @@ enum AuthForm {
   PASSWORD_REPEAT = 'passwordRepeat',
 }
 
-export { AuthForm };
+enum Placeholders {
+  SIGN_IN_EMAIL = 'Email',
+  SIGN_IN_PASSWORD = 'Password',
+  SIGN_UP_EMAIL = 'email*',
+  SIGN_UP_PASSWORD = 'password*',
+}
+
+export { AuthForm, Placeholders };

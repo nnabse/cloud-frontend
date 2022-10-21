@@ -3,13 +3,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { PageNames } from '@enums/auth.enums';
-import { AuthForm } from '@enums/authForm.enums';
+import { AuthForm, Placeholders } from '@enums/authForm.enums';
 import { SIGN_UP_PAGE_NAME } from '@constants/auth-pageNames.constants';
 
 import { AuthService } from '@services/auth.service';
 import { SnackbarService } from '@services/notifications/snackbar.service';
-
-import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-auth-form',
@@ -18,6 +16,18 @@ import { catchError } from 'rxjs';
 })
 export class FormComponent implements OnChanges {
   @Input() formFor: PageNames = PageNames.SIGN_IN;
+
+  public get placeholderEmail(): Placeholders {
+    return this.formFor === this.signUpPageName
+      ? Placeholders.SIGN_UP_EMAIL
+      : Placeholders.SIGN_IN_EMAIL;
+  }
+
+  public get placeholderPassword(): Placeholders {
+    return this.formFor === this.signUpPageName
+      ? Placeholders.SIGN_UP_PASSWORD
+      : Placeholders.SIGN_IN_PASSWORD;
+  }
 
   constructor(
     private authService: AuthService,

@@ -20,13 +20,13 @@
     <input
       formControlName="email"
       class="auth-input"
-      [placeholder]="formFor === signUpPageName ? 'email*' : 'Email'"
+      [placeholder]="placeholderEmail"
     />
     <input
       formControlName="password"
       class="auth-input"
       type="password"
-      [placeholder]="formFor === signUpPageName ? 'password*' : 'Password'"
+      [placeholder]="placeholderPassword"
     />
     <input
       *ngIf="formFor === signUpPageName"
