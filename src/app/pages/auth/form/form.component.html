@@ -3,69 +3,47 @@
 </div>
 <div class="auth-form">
   <form [formGroup]="authForm">
-    <div class="sign-up-inputs">
+    <div class="name-inputs">
       <input
-        formControlName="fullName"
         *ngIf="formFor === signUpPageName"
-        class="sign-up-input"
-        autocomplete="off"
-        type="text"
+        formControlName="fullName"
+        class="auth-input name-input"
         placeholder="full name*"
       />
       <input
-        formControlName="displayName"
         *ngIf="formFor === signUpPageName"
-        class="sign-up-input"
-        autocomplete="off"
-        type="text"
+        formControlName="displayName"
+        class="auth-input name-input"
         placeholder="display name"
       />
     </div>
     <input
       formControlName="email"
-      class="form-input"
-      autocomplete="off"
-      type="text"
-      placeholder="email*"
+      class="auth-input"
+      [placeholder]="placeholderEmail"
     />
     <input
       formControlName="password"
-      class="form-input"
-      autocomplete="off"
+      class="auth-input"
       type="password"
-      placeholder="password*"
+      [placeholder]="placeholderPassword"
     />
     <input
-      formControlName="passwordRepeat"
       *ngIf="formFor === signUpPageName"
-      class="form-input"
-      autocomplete="off"
+      formControlName="passwordRepeat"
+      class="auth-input"
       type="password"
       placeholder="repeat password*"
     />
-    <div *ngIf="formFor === signUpPageName" class="avatar-upload">
-      <div class="avatar-preview"></div>
-      <div class="avatar-upload-button">
-        <button>upload avatar</button>
-        <div class="avatar-upload-requirements">
-          <div class="upload-requirements-text">
-            Supported formats .jpg, .jpeg, .gif, .png
-          </div>
-          <div class="upload-requirements-text">Max image size - 700kB</div>
-        </div>
-      </div>
-    </div>
+    <app-avatar-upload *ngIf="formFor === signUpPageName"></app-avatar-upload>
     <div class="form-submit">
-      <button [disabled]="authForm.invalid" (click)="submitButton()">
+      <button [disabled]="authForm.invalid" (click)="submit()">
         {{ labels[formFor].btnText }}
       </button>
       <div class="form-redirect-link">
         <span>
           {{ labels[formFor].redirectText }}
-          <a
-            class="redirect-link-text"
-            [routerLink]="labels[formFor].redirectLink"
-          >
+          <a class="redirect-link-text" [routerLink]="labels[formFor].redirectLink">
             {{ labels[formFor].redirectBtnText }}
           </a>
         </span>
