@@ -1,7 +1,19 @@
 <div class="avatar-upload">
-  <div class="avatar-preview"></div>
+  <div class="avatar-preview" appDnd (fileDropped)="onDrop($event)">
+    <label for="upload">
+      <img [src]="fileSrc" *ngIf="fileSrc" />
+      <input
+        id="upload"
+        #uploader
+        type="file"
+        (change)="onFileSelect($event)"
+        [accept]="acceptedFileTypes"
+        hidden
+      />
+    </label>
+  </div>
   <div class="avatar-upload-button">
-    <button>upload avatar</button>
+    <button (click)="uploader.click()">upload avatar</button>
     <div class="avatar-upload-requirements">
       <div class="upload-requirements-text">
         Supported formats .jpg, .jpeg, .gif, .png

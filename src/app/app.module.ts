@@ -20,6 +20,8 @@ import { DashboardComponent } from '@pages/dashboard/dashboard.component';
 import { SidebarComponent } from '@components/sidebar/sidebar.component';
 import { AvatarUploadComponent } from '@components/avatar-upload/avatar-upload.component';
 
+import { DndDirective } from './directives/dnd.directive';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +30,7 @@ import { AvatarUploadComponent } from '@components/avatar-upload/avatar-upload.c
     SidebarComponent,
     DashboardComponent,
     AvatarUploadComponent,
+    DndDirective,
   ],
   imports: [
     AppRoutingModule,

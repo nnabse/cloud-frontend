@@ -8,8 +8,11 @@ import { Observable, of } from 'rxjs';
 export class SnackbarService {
   constructor(private snack: MatSnackBar) {}
 
-  openErrorSnackbar(err: any): Observable<null> {
-    const message = !err.status ? 'DB connection error!' : err.error.message;
+  openErrorSnackbarServer(err: any): Observable<null> {
+    let message = !err.status ? 'DB connection error!' : err.error.message;
+    if (!message) {
+      message = 'Unknown error!';
+    }
     this.snack.open(message, '', {
       duration: 3500,
       verticalPosition: 'top',
@@ -17,5 +20,14 @@ export class SnackbarService {
       panelClass: 'error-snack',
     });
     return of(null);
+  }
+
+  openErrorSnackbar(message: string) {
+    this.snack.open(message, '', {
+      duration: 3500,
+      verticalPosition: 'top',
+      horizontalPosition: 'right',
+      panelClass: 'error-snack',
+    });
   }
 }

@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { PageNames } from '@enums/auth.enums';
+import { PageName } from '@enums/auth.enums';
 import { AuthForm, Placeholders } from '@enums/authForm.enums';
 import { SIGN_UP_PAGE_NAME } from '@constants/auth-pageNames.constants';
 
@@ -47,7 +47,10 @@ export class FormComponent implements OnChanges {
   }
 
   public authForm: FormGroup = new FormGroup({
-    fullName: new FormControl('', [Validators.required]),
+    fullName: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^\\b[a-zA-Z]+\\b \\b[a-zA-Z]+\\b$'),
+    ]),
     displayName: new FormControl('', [Validators.minLength(5)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
@@ -93,13 +96,13 @@ export class FormComponent implements OnChanges {
         .signUp({ fullName, displayName, email, password })
         .subscribe({
           next: () => this.router.navigate(['/dashboard']),
-          error: (error) => this.snackbar.openErrorSnackbar(error),
+          error: (error) => this.snackbar.openErrorSnackbarServer(error),
         });
     } else {
       const { email, password } = this.authForm.value;
       this.authService.signIn({ email, password }).subscribe({
         next: () => this.router.navigate(['/dashboard']),
-        error: (error) => this.snackbar.openErrorSnackbar(error),
+        error: (error) => this.snackbar.openErrorSnackbarServer(error),
       });
     }
     this.clearPasswordFields();
