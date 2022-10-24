@@ -4,7 +4,11 @@ import { Router } from '@angular/router';
 
 import { PageName } from '@enums/auth.enums';
 import { AuthForm, Placeholders } from '@enums/authForm.enums';
-import { SIGN_UP_PAGE_NAME } from '@constants/auth.constants';
+import {
+  SIGN_UP_PAGE_NAME,
+  FULLNAME_PATTERN,
+  PASSWORD_PATTERN,
+} from '@constants/auth.constants';
 
 import { AuthService } from '@services/auth.service';
 import { SnackbarService } from '@services/notifications/snackbar.service';
@@ -49,7 +53,7 @@ export class FormComponent implements OnChanges {
   public authForm: FormGroup = new FormGroup({
     fullName: new FormControl('', [
       Validators.required,
-      Validators.pattern('^\\b[a-zA-Z]+\\b \\b[a-zA-Z]+\\b$'),
+      Validators.pattern(FULLNAME_PATTERN),
     ]),
     displayName: new FormControl('', [Validators.minLength(5)]),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -57,13 +61,13 @@ export class FormComponent implements OnChanges {
       Validators.required,
       Validators.minLength(8),
       Validators.maxLength(24),
-      Validators.pattern('^[A-Za-z0-9_\\D]+$'),
+      Validators.pattern(PASSWORD_PATTERN),
     ]),
     passwordRepeat: new FormControl('', [
       Validators.required,
       Validators.minLength(8),
       Validators.maxLength(24),
-      Validators.pattern('^[A-Za-z0-9_\\D]+$'),
+      Validators.pattern(PASSWORD_PATTERN),
     ]),
   });
 
@@ -96,13 +100,13 @@ export class FormComponent implements OnChanges {
         .signUp({ fullName, displayName, email, password })
         .subscribe({
           next: () => this.router.navigate(['/dashboard']),
-          error: (error) => this.snackbar.openErrorSnackbarServer(error),
+          error: (error) => this.snackbar.openErrorServer(error),
         });
     } else {
       const { email, password } = this.authForm.value;
       this.authService.signIn({ email, password }).subscribe({
         next: () => this.router.navigate(['/dashboard']),
-        error: (error) => this.snackbar.openErrorSnackbarServer(error),
+        error: (error) => this.snackbar.openErrorServer(error),
       });
     }
     this.clearPasswordFields();

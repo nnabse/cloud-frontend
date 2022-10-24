@@ -1,12 +1,12 @@
 <div class="avatar-upload">
-  <div class="avatar-preview" appDnd (fileDropped)="onFileSelect($event, true)">
+  <div class="avatar-preview" appDnd (fileDropped)="onFileSelect($event)">
     <label for="upload">
       <img [src]="fileSrc" *ngIf="fileSrc" />
       <input
         id="upload"
         #uploader
         type="file"
-        (change)="onFileSelect($event, false)"
+        (change)="onFileSelect($event)"
         [accept]="acceptedFileTypes"
         hidden
       />

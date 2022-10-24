@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AvatarError } from '@enums/avatar.enums';
 import { AvatarRequirement } from '@enums/auth.enums';
 import { AVATAR_SIZE_LIMIT } from '@constants/auth.constants';
@@ -10,38 +10,35 @@ import { SnackbarService } from '@services/notifications/snackbar.service';
   templateUrl: './avatar-upload.component.html',
   styleUrls: ['./avatar-upload.component.scss'],
 })
-export class AvatarUploadComponent implements OnInit {
+export class AvatarUploadComponent {
   public supportedFormats = AvatarRequirement.SUPPORTED_FORMATS;
   public imageSize = AvatarRequirement.FILE_SIZE;
-  public fileSrc: any;
+  public fileSrc: string | ArrayBuffer | null = null;
   public fileName = '';
 
   public acceptedFileTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
   constructor(private snack: SnackbarService) {}
 
-  ngOnInit(): void {}
-
-  onFileSelect(event: any, isDraggedFile: boolean) {
+  public onFileSelect(event: DragEvent | Event): void {
     let file;
-    if (isDraggedFile) {
-      file = event?.dataTransfer?.files[0];
+    if ('dataTransfer' in event) {
+      file = event.dataTransfer?.files[0];
     } else {
-      file = event?.target?.files[0];
+      const fileList = (event.target as HTMLInputElement).files as FileList;
+      file = fileList.item(0);
     }
     if (!file) return;
     if (!this.acceptedFileTypes.includes(file.type)) {
-      this.snack.openErrorSnackbar(AvatarError.TYPE_NOT_SUPPORTED);
-      return;
+      return this.snack.openError(AvatarError.TYPE_NOT_SUPPORTED);
     }
     if (file.size > AVATAR_SIZE_LIMIT) {
-      this.snack.openErrorSnackbar(AvatarError.TOO_BIG);
-      return;
+      return this.snack.openError(AvatarError.TOO_BIG);
     }
     this.fileToView(file);
   }
 
-  fileToView(file: any) {
+  public fileToView(file: File): void {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => (this.fileSrc = reader.result);

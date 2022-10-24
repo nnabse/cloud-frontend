@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, of } from 'rxjs';
+import { AuthError } from '@interfaces/auth.interface';
+import { CONN_ERR, UNKNOWN_ERR } from '@constants/snackbarMessages.constants';
 
 @Injectable({
   providedIn: 'root',
@@ -8,21 +10,14 @@ import { Observable, of } from 'rxjs';
 export class SnackbarService {
   constructor(private snack: MatSnackBar) {}
 
-  openErrorSnackbarServer(err: any): Observable<null> {
-    let message = !err.status ? 'DB connection error!' : err.error.message;
-    if (!message) {
-      message = 'Unknown error!';
-    }
-    this.snack.open(message, '', {
-      duration: 3500,
-      verticalPosition: 'top',
-      horizontalPosition: 'right',
-      panelClass: 'error-snack',
-    });
+  openErrorServer(err: AuthError): Observable<null> {
+    let message = !err.status ? CONN_ERR : err.error.message;
+    if (!message) message = UNKNOWN_ERR;
+    this.openError(message);
     return of(null);
   }
 
-  openErrorSnackbar(message: string) {
+  openError(message: string): void {
     this.snack.open(message, '', {
       duration: 3500,
       verticalPosition: 'top',
