@@ -3,9 +3,9 @@ enum PageName {
   SIGN_UP = 'Sign up',
 }
 
-enum AvatarError {
-  TOO_BIG = 'File size it too big! Maximum file size is 700 kB.',
-  TYPE_NOT_SUPPORTED = 'This file type is not supported!',
+enum AvatarRequirement {
+  SUPPORTED_FORMATS = 'Supported formats .jpg, .jpeg, .gif, .png',
+  FILE_SIZE = 'Max image size - 700kB',
 }
 
-export { PageName, AvatarError };
+export { PageName, AvatarRequirement };

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { AvatarError } from '@enums/avatar.enums';
+import { AvatarRequirement } from '@enums/auth.enums';
+import { AVATAR_SIZE_LIMIT } from '@constants/auth.constants';
+
 import { SnackbarService } from '@services/notifications/snackbar.service';
-import { AvatarError } from '@enums/auth.enums';
 
 @Component({
   selector: 'app-avatar-upload',
@@ -8,49 +11,37 @@ import { AvatarError } from '@enums/auth.enums';
   styleUrls: ['./avatar-upload.component.scss'],
 })
 export class AvatarUploadComponent implements OnInit {
+  public supportedFormats = AvatarRequirement.SUPPORTED_FORMATS;
+  public imageSize = AvatarRequirement.FILE_SIZE;
   public fileSrc: any;
   public fileName = '';
 
   public acceptedFileTypes = ['image/jpeg', 'image/png', 'image/gif'];
-  public regexAcceptedType = new RegExp(/image\/jpeg|image\/png|image\/gif/);
 
   constructor(private snack: SnackbarService) {}
 
   ngOnInit(): void {}
 
-  onFileSelect(event: any) {
-    const file = event?.target?.files[0];
-    if (!file) return;
-    if (!this.regexAcceptedType.test(file.type)) {
-      this.snack.openErrorSnackbar(AvatarError.TYPE_NOT_SUPPORTED);
-      return;
+  onFileSelect(event: any, isDraggedFile: boolean) {
+    let file;
+    if (isDraggedFile) {
+      file = event?.dataTransfer?.files[0];
+    } else {
+      file = event?.target?.files[0];
     }
-    if (file.size > 700000) {
-      this.snack.openErrorSnackbar(AvatarError.TOO_BIG);
-      return;
-    }
-    this.showFile(file);
-  }
-
-  checkAndShowFile(file: any) {
     if (!file) return;
     if (!this.acceptedFileTypes.includes(file.type)) {
       this.snack.openErrorSnackbar(AvatarError.TYPE_NOT_SUPPORTED);
       return;
     }
-    if (file.size > 700000) {
+    if (file.size > AVATAR_SIZE_LIMIT) {
       this.snack.openErrorSnackbar(AvatarError.TOO_BIG);
       return;
     }
-    this.showFile(file);
+    this.fileToView(file);
   }
 
-  onDrop(event: any) {
-    const file = event.dataTransfer.files[0];
-    this.checkAndShowFile(file);
-  }
-
-  showFile(file: any) {
+  fileToView(file: any) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => (this.fileSrc = reader.result);

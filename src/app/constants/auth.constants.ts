@@ -1,0 +1,4 @@
+const SIGN_UP_PAGE_NAME = 'Sign up';
+const AVATAR_SIZE_LIMIT = '700000';
+
+export { SIGN_UP_PAGE_NAME, AVATAR_SIZE_LIMIT };
