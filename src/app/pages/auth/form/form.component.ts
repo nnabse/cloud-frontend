@@ -1,5 +1,10 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { PageName } from '@enums/auth.enums';
@@ -50,27 +55,39 @@ export class FormComponent implements OnChanges {
     }
   }
 
-  public authForm: FormGroup = new FormGroup({
-    fullName: new FormControl('', [
-      Validators.required,
-      Validators.pattern(FULLNAME_PATTERN),
-    ]),
-    displayName: new FormControl('', [Validators.minLength(5)]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(8),
-      Validators.maxLength(24),
-      Validators.pattern(PASSWORD_PATTERN),
-    ]),
-    passwordRepeat: new FormControl('', [
-      Validators.required,
-      Validators.minLength(8),
-      Validators.maxLength(24),
-      Validators.pattern(PASSWORD_PATTERN),
-    ]),
-    avatar: new FormControl(''),
-  });
+  private checkPasswords(group: AbstractControl) {
+    const password = group.get(AuthForm.PASSWORD)?.value;
+    const passwordRepeat = group.get(AuthForm.PASSWORD_REPEAT)?.value;
+    if (password !== passwordRepeat) {
+      group.get(AuthForm.PASSWORD_REPEAT)?.setErrors({ notMatch: true });
+    }
+    return null;
+  }
+
+  public authForm: FormGroup = new FormGroup(
+    {
+      fullName: new FormControl('', [
+        Validators.required,
+        Validators.pattern(FULLNAME_PATTERN),
+      ]),
+      displayName: new FormControl('', [Validators.minLength(5)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(24),
+        Validators.pattern(PASSWORD_PATTERN),
+      ]),
+      passwordRepeat: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(24),
+        Validators.pattern(PASSWORD_PATTERN),
+      ]),
+      avatar: new FormControl(''),
+    },
+    { validators: this.checkPasswords }
+  );
 
   public labels = {
     'Sign in': {
