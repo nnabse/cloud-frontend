@@ -35,7 +35,10 @@
       type="password"
       placeholder="repeat password*"
     />
-    <app-avatar-upload *ngIf="formFor === signUpPageName"></app-avatar-upload>
+    <app-avatar-upload
+      *ngIf="formFor === signUpPageName"
+      (avatarAddingEvent)="authForm.get('avatar')?.setValue($event)"
+    ></app-avatar-upload>
     <div class="form-submit">
       <button [disabled]="authForm.invalid" (click)="submit()">
         {{ labels[formFor].btnText }}

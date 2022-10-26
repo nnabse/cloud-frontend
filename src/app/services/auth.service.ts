@@ -1,13 +1,8 @@
 import { Injectable } from '@angular/core';
-
 import { HttpClient } from '@angular/common/http';
-
-import { Observable } from 'rxjs';
-
 import { environment } from '@environments/environment';
+import { Observable } from 'rxjs';
 import { RequestLink } from '@enums/requestLink.enums';
-
-import { SignUpForm } from '@interfaces/signUpForm.interface';
 import { SignInForm } from '@interfaces/signInForm.interface';
 import { Auth } from '@interfaces/auth.interface';
 
@@ -17,7 +12,7 @@ import { Auth } from '@interfaces/auth.interface';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  public signUp(body: SignUpForm): Observable<Auth> {
+  public signUp(body: FormData): Observable<Auth> {
     return this.http.post<Auth>(
       `${environment.DB_LINK}${RequestLink.SIGN_UP}`,
       body,
