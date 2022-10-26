@@ -5,9 +5,9 @@ import { Router } from '@angular/router';
 import { PageName } from '@enums/auth.enums';
 import { AuthForm, Placeholders } from '@enums/authForm.enums';
 import {
-  SIGN_UP_PAGE_NAME,
   FULLNAME_PATTERN,
   PASSWORD_PATTERN,
+  SIGN_UP_PAGE_NAME,
 } from '@constants/auth.constants';
 
 import { AuthService } from '@services/auth.service';
@@ -69,6 +69,7 @@ export class FormComponent implements OnChanges {
       Validators.maxLength(24),
       Validators.pattern(PASSWORD_PATTERN),
     ]),
+    avatar: new FormControl(''),
   });
 
   public labels = {
@@ -95,13 +96,22 @@ export class FormComponent implements OnChanges {
 
   public submit(): void {
     if (this.formFor === PageName.SIGN_UP) {
-      const { fullName, displayName, email, password } = this.authForm.value;
-      this.authService
-        .signUp({ fullName, displayName, email, password })
-        .subscribe({
-          next: () => this.router.navigate(['/dashboard']),
-          error: (error) => this.snackbar.openErrorServer(error),
-        });
+      const formData = new FormData();
+      const formLength = Object.keys(this.authForm.controls)?.length;
+      const formControlsKeys = Object.keys(this.authForm.controls);
+
+      for (let i = 0; i <= formLength - 1; i++) {
+        const controlName = Object.keys(this.authForm.controls)[i];
+        if (controlName === AuthForm.PASSWORD_REPEAT) continue;
+        formData.append(
+          formControlsKeys[i],
+          this.authForm.get(controlName)?.value
+        );
+      }
+      this.authService.signUp(formData).subscribe({
+        next: () => this.router.navigate(['/dashboard']),
+        error: (error) => this.snackbar.openErrorServer(error),
+      });
     } else {
       const { email, password } = this.authForm.value;
       this.authService.signIn({ email, password }).subscribe({
