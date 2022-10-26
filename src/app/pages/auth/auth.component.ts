@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { PageNames } from '@enums/auth.enums';
+import { PageName } from '@enums/auth.enums';
 
 @Component({
   selector: 'app-auth',
@@ -11,10 +11,10 @@ import { PageNames } from '@enums/auth.enums';
 export class AuthComponent implements OnInit {
   constructor(private router: Router) {}
 
-  public formType: PageNames = PageNames.SIGN_IN;
+  public formType: PageName = PageName.SIGN_IN;
 
   ngOnInit(): void {
-    if (this.router.url === '/signIn') this.formType = PageNames.SIGN_IN;
-    if (this.router.url === '/signUp') this.formType = PageNames.SIGN_UP;
+    if (this.router.url === '/signIn') this.formType = PageName.SIGN_IN;
+    if (this.router.url === '/signUp') this.formType = PageName.SIGN_UP;
   }
 }

@@ -20,7 +20,6 @@
       font-size: 1.5rem;
       font-family: $main-font;
       font-weight: bold;
-
       img {
         width: 18px;
         height: 18px;
@@ -42,15 +41,17 @@
       span {
         display: flex;
       }
-
       bottom: 0;
-      padding: 0 0 60px 60px;
+      margin: 0 0 60px 60px;
       position: absolute;
-
       h2 {
+        margin: 0;
         padding-left: 10px;
         font-weight: lighter;
       }
+    }
+    .sign-out-btn:hover {
+      cursor: pointer;
     }
   }
 }

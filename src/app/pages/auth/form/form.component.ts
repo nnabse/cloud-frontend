@@ -2,9 +2,13 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { PageNames } from '@enums/auth.enums';
+import { PageName } from '@enums/auth.enums';
 import { AuthForm, Placeholders } from '@enums/authForm.enums';
-import { SIGN_UP_PAGE_NAME } from '@constants/auth-pageNames.constants';
+import {
+  SIGN_UP_PAGE_NAME,
+  FULLNAME_PATTERN,
+  PASSWORD_PATTERN,
+} from '@constants/auth.constants';
 
 import { AuthService } from '@services/auth.service';
 import { SnackbarService } from '@services/notifications/snackbar.service';
@@ -15,7 +19,7 @@ import { SnackbarService } from '@services/notifications/snackbar.service';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnChanges {
-  @Input() formFor: PageNames = PageNames.SIGN_IN;
+  @Input() formFor: PageName = PageName.SIGN_IN;
 
   public get placeholderEmail(): Placeholders {
     return this.formFor === this.signUpPageName
@@ -39,7 +43,7 @@ export class FormComponent implements OnChanges {
     for (let changeName in changes) {
       const changedProperty = changes[changeName];
       this.formFor = changedProperty.currentValue;
-      if (this.formFor === PageNames.SIGN_IN) {
+      if (this.formFor === PageName.SIGN_IN) {
         this.authForm.removeControl(AuthForm.PASSWORD_REPEAT);
         this.authForm.removeControl(AuthForm.FULLNAME);
       }
@@ -47,20 +51,23 @@ export class FormComponent implements OnChanges {
   }
 
   public authForm: FormGroup = new FormGroup({
-    fullName: new FormControl('', [Validators.required]),
+    fullName: new FormControl('', [
+      Validators.required,
+      Validators.pattern(FULLNAME_PATTERN),
+    ]),
     displayName: new FormControl('', [Validators.minLength(5)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(8),
       Validators.maxLength(24),
-      Validators.pattern('^[A-Za-z0-9_\\D]+$'),
+      Validators.pattern(PASSWORD_PATTERN),
     ]),
     passwordRepeat: new FormControl('', [
       Validators.required,
       Validators.minLength(8),
       Validators.maxLength(24),
-      Validators.pattern('^[A-Za-z0-9_\\D]+$'),
+      Validators.pattern(PASSWORD_PATTERN),
     ]),
   });
 
@@ -87,19 +94,19 @@ export class FormComponent implements OnChanges {
   }
 
   public submit(): void {
-    if (this.formFor === PageNames.SIGN_UP) {
+    if (this.formFor === PageName.SIGN_UP) {
       const { fullName, displayName, email, password } = this.authForm.value;
       this.authService
         .signUp({ fullName, displayName, email, password })
         .subscribe({
           next: () => this.router.navigate(['/dashboard']),
-          error: (error) => this.snackbar.openErrorSnackbar(error),
+          error: (error) => this.snackbar.openErrorServer(error),
         });
     } else {
       const { email, password } = this.authForm.value;
       this.authService.signIn({ email, password }).subscribe({
         next: () => this.router.navigate(['/dashboard']),
-        error: (error) => this.snackbar.openErrorSnackbar(error),
+        error: (error) => this.snackbar.openErrorServer(error),
       });
     }
     this.clearPasswordFields();
