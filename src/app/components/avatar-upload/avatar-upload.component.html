@@ -1,7 +1,12 @@
 <div class="avatar-upload">
-  <div class="avatar-preview" appDnd (fileDropped)="onFileSelect($event)">
+  <div
+    class="avatar-preview"
+    [ngStyle]="fileSrc ? { 'background-color': '#fff' } : { 'background-color': '#7E0BA61A' }"
+    appDnd
+    (fileDropped)="onFileSelect($event)"
+  >
     <label for="upload">
-      <img [src]="fileSrc" *ngIf="fileSrc" />
+      <img [src]="fileSrc" *ngIf="fileSrc" [alt]="previewAltText" />
       <input
         id="upload"
         #uploader
@@ -15,10 +20,10 @@
   <div class="avatar-upload-button">
     <button (click)="uploader.click()">upload avatar</button>
     <div class="avatar-upload-requirements">
-      <div class="upload-requirements-text">
+      <div class="requirements-formats">
         {{ supportedFormats }}
       </div>
-      <div class="upload-requirements-text">{{ imageSize }}</div>
+      <div class="requirements-size">{{ imageSize }}</div>
     </div>
   </div>
 </div>

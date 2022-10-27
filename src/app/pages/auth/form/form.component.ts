@@ -126,13 +126,19 @@ export class FormComponent implements OnChanges {
         );
       }
       this.authService.signUp(formData).subscribe({
-        next: () => this.router.navigate(['/dashboard']),
+        next: (resp) => {
+          this.router.navigate(['/dashboard']);
+          this.snackbar.openSuccess(resp.message);
+        },
         error: (error) => this.snackbar.openErrorServer(error),
       });
     } else {
       const { email, password } = this.authForm.value;
       this.authService.signIn({ email, password }).subscribe({
-        next: () => this.router.navigate(['/dashboard']),
+        next: (resp) => {
+          this.router.navigate(['/dashboard']);
+          this.snackbar.openSuccess(resp.message);
+        },
         error: (error) => this.snackbar.openErrorServer(error),
       });
     }

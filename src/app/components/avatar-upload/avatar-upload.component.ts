@@ -13,6 +13,7 @@ import { SnackbarService } from '@services/notifications/snackbar.service';
 export class AvatarUploadComponent {
   @Output() avatarAddingEvent = new EventEmitter<File>();
 
+  public previewAltText = AvatarRequirement.PREVIEW_ALT_TEXT;
   public supportedFormats = AvatarRequirement.SUPPORTED_FORMATS;
   public imageSize = AvatarRequirement.FILE_SIZE;
   public fileSrc: string | ArrayBuffer | null = null;

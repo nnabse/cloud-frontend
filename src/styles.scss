@@ -2,13 +2,18 @@
 
 html,
 body {
-  height: 100%;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, "Helvetica Neue", monospace;
   background-color: black;
+}
+
+.success-snack {
+  background-color: $light-green;
+  color: #000;
 }
 
 .error-snack {
