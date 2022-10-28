@@ -114,11 +114,10 @@ export class FormComponent implements OnChanges {
   public submit(): void {
     if (this.formFor === PageName.SIGN_UP) {
       const formData = new FormData();
-      const formLength = Object.keys(this.authForm.controls)?.length;
-      const formControlsKeys = Object.keys(this.authForm.controls);
+      const formControlsKeys = Object.keys(this.authForm.controls) || [];
 
-      for (let i = 0; i <= formLength - 1; i++) {
-        const controlName = Object.keys(this.authForm.controls)[i];
+      for (let i = 0; i <= formControlsKeys.length - 1; i++) {
+        const controlName = formControlsKeys[i];
         if (controlName === AuthForm.PASSWORD_REPEAT) continue;
         formData.append(
           formControlsKeys[i],
