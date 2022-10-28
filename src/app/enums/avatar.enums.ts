@@ -3,4 +3,9 @@ enum AvatarError {
   TYPE_NOT_SUPPORTED = 'This file type is not supported!',
 }
 
-export { AvatarError };
+enum AvatarBackground {
+  WHITE = '#fff',
+  PINK = '#f2e7f6',
+}
+
+export { AvatarError, AvatarBackground };

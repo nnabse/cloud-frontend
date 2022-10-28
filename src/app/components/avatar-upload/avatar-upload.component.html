@@ -1,7 +1,7 @@
 <div class="avatar-upload">
   <div
     class="avatar-preview"
-    [ngStyle]="fileSrc ? { 'background-color': '#fff' } : { 'background-color': '#7E0BA61A' }"
+    [style.backgroundColor]="avatarBackground"
     appDnd
     (fileDropped)="onFileSelect($event)"
   >

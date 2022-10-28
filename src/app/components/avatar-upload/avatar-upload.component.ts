@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { AvatarError } from '@enums/avatar.enums';
+import { AvatarBackground, AvatarError } from '@enums/avatar.enums';
 import { AvatarRequirement } from '@enums/auth.enums';
 import { AVATAR_SIZE_LIMIT } from '@constants/auth.constants';
 
@@ -12,6 +12,10 @@ import { SnackbarService } from '@services/notifications/snackbar.service';
 })
 export class AvatarUploadComponent {
   @Output() avatarAddingEvent = new EventEmitter<File>();
+
+  public get avatarBackground(): AvatarBackground {
+    return this.fileSrc ? AvatarBackground.WHITE : AvatarBackground.PINK;
+  }
 
   public previewAltText = AvatarRequirement.PREVIEW_ALT_TEXT;
   public supportedFormats = AvatarRequirement.SUPPORTED_FORMATS;
