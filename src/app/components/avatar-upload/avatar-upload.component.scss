@@ -4,18 +4,17 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 2vh;
   .avatar-preview {
     display: flex;
     align-items: center;
-    width: 120px;
-    height: 120px;
-    background-color: $pink-color-light;
-    border-radius: 60px;
+    min-width: 160px;
+    height: 160px;
+    border-radius: 50%;
     transition: 0.5s;
+    margin-right: 15px;
     img {
-      width: 100%;
-      height: 100%;
+      width: 160px;
       border-radius: 50%;
     }
     label {
@@ -23,7 +22,7 @@
       justify-content: center;
       width: 100%;
       height: 100%;
-      border-radius: 60px;
+      border-radius: 50%;
       input {
         width: 50%;
         height: 50%;
@@ -32,71 +31,141 @@
   }
 
   .avatar-preview:hover {
-    box-shadow: 0 0 5px $pink-color-dark;
+    box-shadow: 0 0 0.5vh $pink-color-dark;
     transition: 0.5s;
   }
 
   .avatar-upload-button {
     width: 70%;
-    height: 50%;
-    margin-left: 20px;
+    height: 60%;
+    margin-top: 2vh;
     button {
       min-width: 80%;
       width: 100%;
-      height: 35px;
+      height: 4vh;
       background-color: $pink-color-lighter;
       border: none;
       font-family: $main-font;
-      font-size: 1.3rem;
+      font-size: 1.2vw;
+      color: #000;
     }
 
     button:hover {
       background-color: $pink-color-darken;
-      border: 1px solid black;
+      border: 0.1vh solid black;
     }
 
     .avatar-upload-requirements {
       width: 100%;
       font-family: $main-font;
-      font-size: 1rem;
-      padding-top: 10px;
+      font-size: 14px;
+      padding-top: 1.5%;
+      .requirements-size {
+        margin-top: 1.5%;
+      }
     }
   }
 }
 
-@media screen and (max-height: 700px) {
+@media only screen and (max-width: 2600px) {
   .avatar-upload {
-    margin-top: 10px;
     .avatar-preview {
-      width: 7vw;
-      height: 60px;
+      min-width: 200px;
+      height: 200px;
     }
     .avatar-upload-button {
       width: 70%;
       button {
-        height: 30px;
+        height: 45px;
       }
       .avatar-upload-requirements {
-        font-size: 0.8rem;
+        font-size: 18px;
       }
     }
   }
 }
 
-@media screen and (max-width: 600px) and (min-height: 400px) {
+@media only screen and (max-width: 992px) {
   .avatar-upload {
-    margin-top: 20px;
     .avatar-preview {
-      width: 40%;
+      min-width: 100px;
       height: 100px;
+      img {
+        width: 100px;
+      }
     }
     .avatar-upload-button {
-      width: 50%;
+      width: 80%;
+      height: 100%;
+      margin-top: 0;
       button {
-        font-size: 12px;
+        height: 30px;
+        font-size: 14px;
       }
       .avatar-upload-requirements {
         font-size: 10px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  .avatar-upload {
+    .avatar-preview {
+      min-width: 80px;
+      height: 80px;
+      img {
+        width: 80px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .avatar-upload {
+    .avatar-upload-button {
+      button {
+        height: 25px;
+        font-size: 12px;
+      }
+      .avatar-upload-requirements {
+        font-size: 8px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 250px) {
+  .avatar-upload {
+    .avatar-preview {
+      min-width: 60px;
+      height: 60px;
+      img {
+        width: 60px;
+      }
+    }
+    .avatar-upload-button {
+      button {
+        height: 22px;
+        font-size: 8px;
+      }
+      button:hover {
+        background-color: $pink-color-darken;
+        border: none;
+      }
+      .avatar-upload-requirements {
+        font-size: 6px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 180px) {
+  .avatar-upload {
+    .avatar-upload-button {
+      button {
+        height: 20px;
+        font-size: 6px;
       }
     }
   }

@@ -3,25 +3,28 @@
 .auth-title {
   display: flex;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 45px;
+  padding-top: 2vh;
   font-weight: lighter;
 }
 
 .auth-form form {
   .auth-input {
     width: 100%;
-    max-width: 100%;
-    height: 45px;
+    height: 6vh;
     font-family: $main-font;
+    font-size: 16px;
     margin-top: 20px;
     box-sizing: border-box;
-    padding-left: 15px;
+    border-radius: 0.3vh;
+    padding: 1vh 1.5vh;
+    border: 0.1vh solid black;
   }
 
   .name-inputs {
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
+    margin-top: 1vh;
     .name-input {
       width: 49%;
     }
@@ -29,39 +32,49 @@
 
   .auth-input::placeholder {
     color: #000;
+    font-size: 16px;
   }
 
   .auth-input:hover {
     box-shadow: 0 0 20px $pink-color-lighter;
-    border: 1px solid black;
-    border-radius: 2.5px;
+    border: 0.1vh solid black;
+    border-radius: 0.1vh;
+  }
+
+  .auth-input:focus {
+    outline: none;
   }
 
   .form-submit {
     display: flex;
     width: 100%;
     margin-top: 40px;
-    button {
+    margin-bottom: 2vh;
+    .submit-btn {
+      padding-right: 5px;
       width: 50%;
-      min-height: 35px;
-      font-family: $main-font;
-
-      background-color: $pink-color-lighter;
-      border: none;
-      font-size: 1.2rem;
+      button {
+        width: 100%;
+        height: 4.5vh;
+        font-family: $main-font;
+        background-color: $pink-color-lighter;
+        border: none;
+        font-size: 1.2vw;
+      }
     }
 
     button:hover:enabled {
       background-color: $pink-color-darken;
-      border: 1px solid black;
+      border: 0.1vh solid black;
     }
 
     .form-redirect-link {
+      width: 50%;
       display: flex;
       align-items: center;
+      justify-content: flex-end;
       font-family: $main-font;
-      font-size: 15px;
-      padding-left: 15px;
+      font-size: 16px;
       .redirect-link-text {
         color: $pink-color-dark;
       }
@@ -72,29 +85,142 @@
   }
 }
 
-@media screen and (max-height: 700px) {
-  .auth-title {
-    margin-top: 0;
-  }
+@media only screen and (min-width: 2200px) {
   .auth-form form {
     .auth-input {
-      height: 30px;
+      height: 70px;
+      font-size: 20px;
+    }
+    .auth-input::placeholder {
+      font-size: 20px;
     }
     .form-submit {
-      margin-top: 10px;
+      .submit-btn {
+        button {
+          height: 45px;
+          font-size: 30px;
+        }
+      }
+      .form-redirect-link {
+        font-size: 20px;
+      }
     }
   }
 }
 
-@media screen and (max-width: 900px) and (min-height: 400px) {
+@media only screen and (max-width: 992px) {
   .auth-title {
-    font-size: 1.5rem;
-    margin-top: 15px;
+    font-size: 30px;
   }
   .auth-form form {
     .auth-input {
-      height: 30px;
+      height: 40px;
+      margin-top: 15px;
+      font-size: 15px;
+    }
+    .auth-input::placeholder {
+      font-size: 15px;
+    }
+    .form-submit {
+      margin-top: 2vh;
+      .submit-btn {
+        width: 40%;
+        button {
+          height: 30px;
+        }
+      }
+      .form-redirect-link {
+        font-size: 10px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .auth-form form {
+    .auth-input {
+      margin-top: 15px;
+    }
+    .auth-input::placeholder {
+      font-size: 12px;
+    }
+    .form-submit {
+      .submit-btn {
+        width: 45%;
+        button {
+          width: 100%;
+          font-size: 12px;
+        }
+      }
+      .form-redirect-link {
+        width: 70%;
+        font-size: 10px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  .auth-form form {
+    .auth-input {
       margin-top: 10px;
+    }
+    .form-submit {
+      justify-content: space-between;
+      .submit-btn {
+        width: 30%;
+        button {
+          width: 100%;
+          font-size: 10px;
+        }
+      }
+      .form-redirect-link {
+        font-size: 10px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .auth-form form {
+    .auth-input {
+      height: 30px;
+      width: 100%;
+    }
+    .name-inputs {
+      flex-direction: column;
+      margin-top: 5px;
+      .name-input {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 250px) {
+  .auth-title {
+    font-size: 20px;
+  }
+  .auth-form form {
+    .auth-input {
+      font-size: 10px;
+    }
+    .auth-input::placeholder {
+      font-size: 10px;
+    }
+    .form-submit {
+      .submit-btn {
+        min-width: 50px;
+        button {
+          width: 50px;
+          min-height: 25px;
+          font-size: 8px;
+        }
+      }
+      .form-redirect-link {
+        width: 70%;
+        font-size: 8px;
+      }
     }
   }
 }

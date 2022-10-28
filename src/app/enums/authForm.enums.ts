@@ -4,6 +4,7 @@ enum AuthForm {
   EMAIL = 'email',
   PASSWORD = 'password',
   PASSWORD_REPEAT = 'passwordRepeat',
+  AVATAR = 'avatar',
 }
 
 enum Placeholders {
