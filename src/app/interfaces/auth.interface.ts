@@ -1,6 +1,7 @@
 export interface Auth {
   accessToken: string;
   refreshToken: string;
+  message: string;
 }
 
 export interface AuthError {

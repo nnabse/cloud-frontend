@@ -13,6 +13,15 @@ import {
 export class SnackbarService {
   constructor(private snack: MatSnackBar) {}
 
+  openSuccess(message: string): void {
+    this.snack.open(message, '', {
+      duration: 2000,
+      verticalPosition: 'top',
+      horizontalPosition: 'right',
+      panelClass: 'success-snack',
+    });
+  }
+
   openErrorServer(err: AuthError): Observable<null> {
     let message = !err.status ? CONNECTION_ERR : err.error.message;
     if (!message) message = UNKNOWN_ERR;
