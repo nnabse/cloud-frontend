@@ -6,17 +6,15 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import { PageName } from '@enums/auth.enums';
 import { AuthForm, Placeholders } from '@enums/authForm.enums';
+import { AuthService } from '@services/auth.service';
+import { SnackbarService } from '@services/notifications/snackbar.service';
 import {
   FULLNAME_PATTERN,
   PASSWORD_PATTERN,
   SIGN_UP_PAGE_NAME,
 } from '@constants/auth.constants';
-
-import { AuthService } from '@services/auth.service';
-import { SnackbarService } from '@services/notifications/snackbar.service';
 
 @Component({
   selector: 'app-auth-form',
@@ -37,6 +35,23 @@ export class FormComponent implements OnChanges {
       ? Placeholders.SIGN_UP_PASSWORD
       : Placeholders.SIGN_IN_PASSWORD;
   }
+
+  public labels = {
+    'Sign in': {
+      btnText: 'Sign in',
+      redirectBtnText: 'Sign Up',
+      redirectText: "Haven't account?",
+      redirectLink: '/auth/signUp',
+    },
+    'Sign up': {
+      btnText: 'Sign up',
+      redirectBtnText: 'Sign In',
+      redirectText: 'Already have an account?',
+      redirectLink: '/auth/signIn',
+    },
+  };
+
+  public signUpPageName = SIGN_UP_PAGE_NAME;
 
   constructor(
     private authService: AuthService,
@@ -89,29 +104,12 @@ export class FormComponent implements OnChanges {
     { validators: this.checkPasswords }
   );
 
-  public labels = {
-    'Sign in': {
-      btnText: 'Sign in',
-      redirectBtnText: 'Sign Up',
-      redirectText: "Haven't account?",
-      redirectLink: '/signUp',
-    },
-    'Sign up': {
-      btnText: 'Sign up',
-      redirectBtnText: 'Sign In',
-      redirectText: 'Already have an account?',
-      redirectLink: '/signIn',
-    },
-  };
-
-  public signUpPageName = SIGN_UP_PAGE_NAME;
-
-  public clearPasswordFields(): void {
+  clearPasswordFields(): void {
     this.authForm.get(AuthForm.PASSWORD)?.setValue('');
     this.authForm.get(AuthForm.PASSWORD_REPEAT)?.setValue('');
   }
 
-  public submit(): void {
+  submit(): void {
     if (this.formFor === PageName.SIGN_UP) {
       const formData = new FormData();
       const formControlsKeys = Object.keys(this.authForm.controls) || [];

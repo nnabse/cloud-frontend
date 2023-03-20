@@ -2,7 +2,6 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { AvatarBackground, AvatarError } from '@enums/avatar.enums';
 import { AvatarRequirement } from '@enums/auth.enums';
 import { AVATAR_SIZE_LIMIT } from '@constants/auth.constants';
-
 import { SnackbarService } from '@services/notifications/snackbar.service';
 
 @Component({
@@ -27,7 +26,7 @@ export class AvatarUploadComponent {
 
   constructor(private snack: SnackbarService) {}
 
-  public onFileSelect(event: DragEvent | Event): void {
+  onFileSelect(event: DragEvent | Event): void {
     let file;
     if ('dataTransfer' in event) {
       file = event.dataTransfer?.files[0];
@@ -45,7 +44,7 @@ export class AvatarUploadComponent {
     this.fileToView(file);
   }
 
-  public fileToView(file: File): void {
+  fileToView(file: File): void {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {

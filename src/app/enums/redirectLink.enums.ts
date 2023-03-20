@@ -1,7 +1,8 @@
 enum RedirectLink {
   DASHBOARD = '/dashboard',
-  SIGN_IN = '/signIn',
-  SIGN_UP = '/signUp',
+  ACCOUNT = '/dashboard/account',
+  SIGN_IN = '/auth/signIn',
+  SIGN_UP = '/auth/signUp',
 }
 
 export { RedirectLink };

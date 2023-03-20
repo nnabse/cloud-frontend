@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '@services/auth.service';
-
 import { IconsList } from '@constants/icons.constants';
 
 @Component({
@@ -13,11 +11,9 @@ export class SidebarComponent {
   public isFolderOpened = false;
   public icons = IconsList;
 
-  constructor(private router: Router, private auth: AuthService) {}
+  constructor(private router: Router) {}
 
-  public signOut() {
-    this.auth.signOut().subscribe(() => {
-      this.router.navigate(['/']);
-    });
+  signOut(): void {
+    this.router.navigate(['/']);
   }
 }

@@ -1,0 +1,42 @@
+<div class="main">
+  <div class="content">
+    <div class="head-block">
+      <div class="title"><h2>Dashboard</h2></div>
+      <div class="create-folder-btn">
+        <p>+ Create new folder</p>
+      </div>
+    </div>
+    <div class="folders-list-empty">
+      <h3>You haven't any folders yet. Create one!</h3>
+    </div>
+    <div class="folders-list">
+      <div class="folder">
+        <div class="folder-name">
+          <img [src]="icons.folder.link" [alt]="icons.folder.description" />
+          folder.name
+        </div>
+        <div class="folder-actions">
+          <div class="folder-action">
+            <img
+              [src]="icons.download.link"
+              [alt]="icons.download.description"
+            />
+          </div>
+          <div class="folder-action">
+            <img [src]="icons.share.link" [alt]="icons.share.description" />
+          </div>
+          <div class="folder-action">
+            <img [src]="icons.edit.link" [alt]="icons.edit.description" />
+          </div>
+          <div class="folder-action">
+            <img [src]="icons.delete.link" [alt]="icons.delete.description" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="files-block">
+      <div class="file-add"></div>
+      <div class="files-list"></div>
+    </div>
+  </div>
+</div>
