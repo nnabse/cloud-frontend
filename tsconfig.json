@@ -11,7 +11,8 @@
       "@constants/*": ["src/app/constants/*"],
       "@interfaces/*": ["src/app/interfaces/*"],
       "@material/*": ["src/app/material/*"],
-      "@services/*": ["src/app/services/*"]
+      "@services/*": ["src/app/services/*"],
+      "@shared/*": ["src/app/shared/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
